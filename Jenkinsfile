@@ -20,7 +20,7 @@ environment {
             scannerHome = tool 'fqts-sonar-scanner'
                    }
             steps{
-                withSonarQubeEnv('fqts-sonar-server') { 
+                withSonarQubeEnv('fqts-sonarqube-server') { 
                 sh "${scannerHome}/bin/sonar-scanner"
                 }
             }

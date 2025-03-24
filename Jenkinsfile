@@ -6,13 +6,11 @@ pipeline {
         }
     }
 environment {
-        PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
-        DOCKER_TAG = '2.1.2'
-        DOCKER_IMAGE_NAME = 't-trend'
-
-
+    PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
+    DOCKER_TAG = '2.1.2'
+    DOCKER_IMAGE_NAME = 't-trend'
 }
-        stages {
+    stages {
         stage("Build") {
             steps {
                 echo "Build started"
@@ -63,6 +61,6 @@ environment {
                     """
                 }
             }
-
+        }
     }
 }

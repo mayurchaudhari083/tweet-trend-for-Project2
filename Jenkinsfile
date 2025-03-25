@@ -10,7 +10,7 @@ environment {
     DOCKER_TAG = '2.1.2'
     DOCKER_IMAGE_NAME = 't-trend'
 }
-    stages {
+        stages {
         stage("Build") {
             steps {
                 echo "Build started"

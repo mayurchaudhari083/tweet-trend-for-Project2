@@ -67,7 +67,7 @@ environment {
         stage('Publish Docker Image to Artifactory') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'jfrog-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: 'jenkins-jfrog-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
                     echo $PASSWORD | docker login $JFROG_REGISTRY --username $USERNAME --password-stdin
                     echo '<--------------- docker login done --------------->' 

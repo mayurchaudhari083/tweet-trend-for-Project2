@@ -9,6 +9,8 @@ environment {
     PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
     DOCKER_TAG = '2.1.2'
     DOCKER_IMAGE_NAME = 't-trend'
+    JFROG_REGISTRY = ''https://fqts01punam.jfrog.io'
+    ARTIFACTORY_REPO = 'fqts01punam.jfrog.io/fqts-o1punam-docker-local  
 }
         stages {
         stage("Build") {
@@ -59,6 +61,20 @@ environment {
                     sh """
                     docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_TAG} .
                     """
+                }
+            }
+        }
+        stage('Publish Docker Image to Artifactory') {
+            steps {
+                script {
+                    withCredentials([usernamePassword(credentialsId: 'jfrog-creds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    sh """
+                    echo $PASSWORD | docker login $JFROG_REGISTRY --username $USERNAME --password-stdin
+                    echo '<--------------- docker login done --------------->' 
+                    docker tag ${DOCKER_IMAGE_NAME}:${DOCKER_TAG} ${ARTIFACTORY_REPO}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}
+                    docker push ${ARTIFACTORY_REPO}/${DOCKER_IMAGE_NAME}:${DOCKER_TAG}
+                    """
+                    }
                 }
             }
         }

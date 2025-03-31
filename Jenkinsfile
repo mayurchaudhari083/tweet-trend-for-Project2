@@ -7,7 +7,7 @@ pipeline {
     }
 environment {
     PATH = "/opt/apache-maven-3.9.9/bin:$PATH"
-    DOCKER_TAG = '2.1.2'
+    DOCKER_TAG = '2.1.4'
     DOCKER_IMAGE_NAME = 't-trend'
     JFROG_REGISTRY = 'https://fqts01punam.jfrog.io'
     ARTIFACTORY_REPO = 'fqts01punam.jfrog.io/fqts-o1punam-docker-local'  
